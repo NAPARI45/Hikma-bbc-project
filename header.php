@@ -71,8 +71,13 @@
 
     <!-- Right buttons -->
     <div class="d-flex">
+      <a href="register.php">
       <button class="btn btn-dark rounded-0 me-2">Register</button>
+      </a>
+      <a href="login.php">
       <button class="btn btn-outline-dark rounded-0 ms-2 border-0 ">Sign In</button>
+      </a>
+
     </div>
 
   </div>
@@ -85,10 +90,10 @@
     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
+          <a class="nav-link" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">News</a>
+          <a class="nav-link" href="news.php">News</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Sport</a>
