@@ -27,7 +27,7 @@ include 'config.php';
     $_SESSION['role'] = $user['role'];
     $_SESSION['username'] = $user['username'];
 
-    header("Location: index.php");
+    header("Location: admin_users.php");
     exit;
 
 

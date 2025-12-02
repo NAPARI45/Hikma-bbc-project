@@ -1,4 +1,11 @@
+
 <?php include 'config.php';
+
+require 'vendor/autoload.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 
 
 //die(var_dump($_POST, $_FILES));
@@ -32,20 +39,45 @@ if (!empty($_FILES['image_path']['name'])) {
 $stmt = $pdo->prepare("INSERT INTO posts(title,summary,image_path,category_id, article) VALUES (?,?,?,?,?)");
 $stmt->execute([$title, $summary, $image_path, $category_id, $article]);
 
-// $stmt = $pdo->query("SELECT email FROM users");
-//     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $pdo->query("SELECT email FROM users");
+    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
    
-//     foreach ($users as $user) {
-//         $to = $user['email'];
-//         $subject = "New Post: " . $title;
-//         $message = "Hello!\n\nA new post has been published:\n\nTitle: $title\n\nCheck it out on our website!";
-//         $headers = "From: no-reply@Hikma-bbc-project.com";
+   foreach ($users as $user) {
 
-//         mail($to, $subject, $message, $headers);
-//     }
+    $mail = new PHPMailer(true);
 
-//     echo "Post created and guests notified!";
+    try {
+        // Server settings
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'hickynaps@gmail.com';     // ✅ your Gmail
+        $mail->Password   = 'kmsl jmyi ucif bvhy';        // ✅ Gmail App Password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;
+
+        // Sender & Recipient
+        $mail->setFrom('hickynaps@gmail.com', 'Hikma Blog');
+        $mail->addAddress($user['email']);
+
+        // Email content
+        $mail->isHTML(true);
+        $mail->Subject = "New Post: " . $title;
+        $mail->Body    = "
+            <h2>New Post Published</h2>
+            <p><strong>Title:</strong> $title</p>
+            <p>$summary</p>
+            <p><a href='http://localhost/Hikma-bbc-project/index.php'>Read More</a></p>
+        ";
+
+        $mail->send();
+
+    } catch (Exception $e) {
+        echo "Email not sent to {$user['email']} - Error: {$mail->ErrorInfo}";
+    }
+}
+
 
 
 header("Location: index.php");

@@ -74,9 +74,19 @@
       <a href="register.php">
       <button class="btn btn-dark rounded-0 me-2">Register</button>
       </a>
-      <a href="login.php">
-      <button class="btn btn-outline-dark rounded-0 ms-2 border-0 ">Sign In</button>
-      </a>
+      <?php if (isset($_SESSION['user_id'])): ?>
+        <a href="logout.php">
+        <button class="btn btn-outline-dark rounded-0 ms-2 border-0 ">Sign Out</button>
+        </a>
+
+      <?php else: ?> 
+
+
+          <a href="login.php">
+          <button class="btn btn-outline-dark rounded-0 ms-2 border-0 ">Sign In</button>
+          </a>
+      <?php endif ?>
+
 
     </div>
 

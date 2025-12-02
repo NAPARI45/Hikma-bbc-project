@@ -31,7 +31,7 @@
         
                 <div class="row pb-4">
                     <div class="col-3 align-items-start">
-                        <h3><a href="view.php?id=<?php echo $post[0]['id']; ?>" class="text-dark"> <?php echo $post[0]['title']; ?></a></h3>
+                        <h3><a href="view.php?id=<?php echo $post[0]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[0]['title']; ?></a></h3>
                     </div>
                     <div class="col-9 align-items-start">
                         <img src="<?php echo $post[0]['image_path']; ?>" class="img-fluid d-block mx-auto">
@@ -49,7 +49,7 @@
                     ?>
                         <div class="col-3">
                             <img src="<?php echo $current_post['image_path']; ?>" class="img-fluid d-block mx-auto mb-3">
-                            <h6><a href="view.php?id=<?php echo $current_post['id']; ?>" class="text-dark"> <?php echo $current_post['title']; ?></a></h6><hr>
+                            <h6><a href="view.php?id=<?php echo $current_post['id']; ?>" class="text-dark text-decoration-none"> <?php echo $current_post['title']; ?></a></h6><hr>
                         </div>
                     <?php
                     } 
@@ -61,7 +61,7 @@
             
             <div class="col-3">
                 <img src="<?php echo $post[5]['image_path']; ?>" class="img-fluid d-block mx-auto mb-3">
-                <h6><a href="view.php?id=<?php echo $post[5]['id']; ?>" class="text-dark"> <?php echo $post[4]['title']; ?></a></h6>
+                <h6><a href="view.php?id=<?php echo $post[5]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[4]['title']; ?></a></h6>
                 <p style="font-size: 10px;"><?php echo $post[5]['summary'];?></p><hr>
                 <?php 
                 for($i = 6; $i <=7; $i++) {
@@ -69,7 +69,7 @@
                 
                     $current_post = $post[$i];
                 ?>
-                    <div class="row"><h6><a href="view.php?id=<?php echo $current_post['id'];?>" class="text-dark"><?php echo $current_post['title'];?></a></h6><hr></div>
+                    <div class="row"><h6><a href="view.php?id=<?php echo $current_post['id'];?>" class="text-dark text-decoration-none"><?php echo $current_post['title'];?></a></h6><hr></div>
                     
 
 
@@ -84,7 +84,7 @@
             for($i=8; $i < 12; $i++){
                 $current_post = $post[$i];
             ?>
-                <div class="col-3 small pb-5"><strong><a href="view.php?id=<?php echo $current_post['id']; ?>" class="text-dark"> <?php echo $current_post['title']; ?></a></strong></div>
+                <div class="col-3 small pb-5"><strong><a href="view.php?id=<?php echo $current_post['id']; ?>" class="text-dark text-decoration-none"> <?php echo $current_post['title']; ?></a></strong></div>
            <?php
             }
             
@@ -101,7 +101,7 @@
             <div class="col-9 ">
                 <div class="row pb-4">
                     <div class="col-3 align-items-start">
-                        <h3><a href="view.php?id=<?php echo $post[12]['id']; ?>" class="text-dark"> <?php echo $post[12]['title']; ?></a></h3>
+                        <h3><a href="view.php?id=<?php echo $post[12]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[12]['title']; ?></a></h3>
                     </div>
                     <div class="col-9 align-items-start">
                         <img src="<?php echo $post[12]['image_path']; ?>" class="img-fluid d-block mx-auto">
@@ -114,7 +114,7 @@
                     ?>
                         <div class="col-3 ">
                             <img src="<?php echo $current_post['image_path']; ?>" class="img-fluid d-block mx-auto mb-3">
-                            <h6><a href="view.php?id=<?php echo $current_post['id']; ?>" class="text-dark"> <?php echo $current_post['title']; ?></a></h6>
+                            <h6><a href="view.php?id=<?php echo $current_post['id']; ?>" class="text-dark text-decoration-none"> <?php echo $current_post['title']; ?></a></h6>
                             <hr>
                         </div>
                     <?php 
@@ -128,7 +128,7 @@
 
             <div class="col-3">
                 <img src="<?php echo $post[17]['image_path']; ?>" class="img-fluid d-block mx-auto mb-3">
-                <h6><a href="view.php?id=<?php echo $post[17]['id']; ?>" class="text-dark"> <?php echo $post[17]['title']; ?></a></h6>
+                <h6><a href="view.php?id=<?php echo $post[17]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[17]['title']; ?></a></h6>
                 <p style="font-size: 10px;"><?php echo $post[17]['summary'];?></p><hr>
                 <?php 
                     for($i = 18; $i <=19; $i++) {
@@ -136,7 +136,7 @@
                     
                         $current_post = $post[$i];
                     ?>
-                        <div class="row"><h6><a href="view.php?id=<?php echo $current_post['id'];?>" class="text-dark"><?php echo $current_post['title'];?></a></h6><hr></div>
+                        <div class="row"><h6><a href="view.php?id=<?php echo $current_post['id'];?>" class="text-dark text-decoration-none"><?php echo $current_post['title'];?></a></h6><hr></div>
                         
 
 
@@ -157,7 +157,7 @@
             for($i=20; $i < 24; $i++){
                 $current_post = $post[$i];
             ?>
-                <div class="col-3 small pb-5"><strong><a href="view.php?id=<?php echo $current_post['id']; ?>" class="text-dark"> <?php echo $current_post['title']; ?></a></strong></div>
+                <div class="col-3 small pb-5"><strong><a href="view.php?id=<?php echo $current_post['id']; ?>" class="text-dark text-decoration-none"> <?php echo $current_post['title']; ?></a></strong></div>
            <?php
             }
             
