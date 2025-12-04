@@ -27,7 +27,11 @@ include 'config.php';
     $_SESSION['role'] = $user['role'];
     $_SESSION['username'] = $user['username'];
 
-    header("Location: admin_users.php");
+    if($user['role'] === 'superadmin') {
+        header("Location: admin_users.php");
+    } else {
+        header("Location: index.php");
+    }
     exit;
 
 

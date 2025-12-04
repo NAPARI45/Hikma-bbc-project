@@ -115,7 +115,7 @@
           <a class="nav-link" href="#">Innovation</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Culture</a>
+          <a class="nav-link" href="culture.php">Culture</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Arts</a>
