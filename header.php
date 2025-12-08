@@ -109,10 +109,10 @@
           <a class="nav-link" href="#">Sport</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Business</a>
+          <a class="nav-link" href="business.php">Business</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Innovation</a>
+          <a class="nav-link" href="innovation.php">Innovation</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="culture.php">Culture</a>

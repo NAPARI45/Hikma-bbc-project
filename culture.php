@@ -133,10 +133,10 @@
                                             <img src="<?php echo $post[18]['image_path']; ?>" class="img-fluid w-100 d-block">
                                         </div>
                                          <div class="col-4">
-                                            <img src="<?php echo $post[18]['image_path']; ?>" class="img-fluid w-100 d-block">
+                                            <img src="<?php echo $post[19]['image_path']; ?>" class="img-fluid w-100 d-block">
                                         </div>
                                         <div class="col-4">
-                                            <img src="<?php echo $post[19]['image_path']; ?>" class="img-fluid w-100 d-block">
+                                            <img src="<?php echo $post[20]['image_path']; ?>" class="img-fluid w-100 d-block">
                                         </div>
                                     </div>
                                 </div>
@@ -145,13 +145,13 @@
                                 <div class="container-fluid" >
                                     <div class="row justify-content-center g-3">
                                         <div class="col-4">
-                                            <img src="<?php echo $post[20]['image_path']; ?>" class="img-fluid w-100 d-block">
-                                        </div>
-                                        <div class="col-4">
                                             <img src="<?php echo $post[21]['image_path']; ?>" class="img-fluid w-100 d-block">
                                         </div>
                                         <div class="col-4">
                                             <img src="<?php echo $post[22]['image_path']; ?>" class="img-fluid w-100 d-block">
+                                        </div>
+                                        <div class="col-4">
+                                            <img src="<?php echo $post[23]['image_path']; ?>" class="img-fluid w-100 d-block">
                                         </div>
                                     </div>
                                 </div>
@@ -178,7 +178,7 @@
         </div>
 
         
-        <div class="container mt-4">
+        <div class="container mt-4 pb-5">
             <hr style="height: 3px; background-color: black; opacity: 1; border: none;" class="mt-5">
             <h6 style="font-weight: bold;" class="mb-1"><b>MORE CULTURE</b></h6>
 
@@ -187,11 +187,11 @@
                     3 hours
                 </div>
                 <div class="col-7">
-                    <h4><a href="view.php?id=<?php echo $post[0]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[0]['title']; ?></a></h4>
-                    <h6><a href="view.php?id=<?php echo $post[0]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[0]['summary']; ?></a></h6>
+                    <h4><a href="view.php?id=<?php echo $post[24]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[24]['title']; ?></a></h4>
+                    <h6><a href="view.php?id=<?php echo $post[24]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[24]['summary']; ?></a></h6>
                 </div>
                 <div class="col-4">
-                <img src="<?php echo $post[10]['image_path']; ?>" class="img-fluid d-block mx-auto">
+                <img src="<?php echo $post[24]['image_path']; ?>" class="img-fluid d-block mx-auto">
 
                 </div>
             </div><hr>
@@ -200,11 +200,11 @@
                     3 hours
                 </div>
                 <div class="col-7">
-                    <h4><a href="view.php?id=<?php echo $post[0]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[0]['title']; ?></a></h4>
-                    <h6><a href="view.php?id=<?php echo $post[0]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[0]['summary']; ?></a></h6>
+                    <h4><a href="view.php?id=<?php echo $post[25]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[25]['title']; ?></a></h4>
+                    <h6><a href="view.php?id=<?php echo $post[25]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[25]['summary']; ?></a></h6>
                 </div>
                 <div class="col-4">
-                <img src="<?php echo $post[10]['image_path']; ?>" class="img-fluid d-block mx-auto">
+                <img src="<?php echo $post[25]['image_path']; ?>" class="img-fluid d-block mx-auto">
 
                 </div>
             </div><hr>
@@ -213,16 +213,44 @@
                     3 hours
                 </div>
                 <div class="col-7">
-                    <h4><a href="view.php?id=<?php echo $post[0]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[0]['title']; ?></a></h4>
-                    <h6><a href="view.php?id=<?php echo $post[0]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[0]['summary']; ?></a></h6>
+                    <h4><a href="view.php?id=<?php echo $post[26]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[26]['title']; ?></a></h4>
+                    <h6><a href="view.php?id=<?php echo $post[26]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[26]['summary']; ?></a></h6>
                 </div>
                 <div class="col-4">
-                <img src="<?php echo $post[10]['image_path']; ?>" class="img-fluid d-block mx-auto">
+                <img src="<?php echo $post[26]['image_path']; ?>" class="img-fluid d-block mx-auto">
 
                 </div>
             </div><hr>
+                <div class="row pt-5">
+                <div class="col-1 ps-5" style="font-size:smaller" >
+                    3 hours
+                </div>
+                <div class="col-7">
+                    <h4><a href="view.php?id=<?php echo $post[27]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[27]['title']; ?></a></h4>
+                    <h6><a href="view.php?id=<?php echo $post[27]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[27]['summary']; ?></a></h6>
+                </div>
+                <div class="col-4">
+                <img src="<?php echo $post[27]['image_path']; ?>" class="img-fluid d-block mx-auto">
+
+                </div>
+            </div><hr>
+                <div class="row pt-5">
+                <div class="col-1 ps-5" style="font-size:smaller" >
+                    3 hours
+                </div>
+                <div class="col-7">
+                    <h4><a href="view.php?id=<?php echo $post[28]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[28]['title']; ?></a></h4>
+                    <h6><a href="view.php?id=<?php echo $post[28]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[28]['summary']; ?></a></h6>
+                </div>
+                <div class="col-4">
+                <img src="<?php echo $post[28]['image_path']; ?>" class="img-fluid d-block mx-auto">
+
+                </div>
+            </div>
         </div>
 
 
 </body>
+
 </html>
+<?php include 'footer2.php'?>

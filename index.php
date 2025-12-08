@@ -46,7 +46,7 @@ include 'config.php';
 </head>
 <body>
  
-  <?php /*foreach($posts as $post)*/ ?>
+  
   <div class="container">
     <div class="row pt-3">
       <div class="col-9 ">
