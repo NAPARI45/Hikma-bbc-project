@@ -152,13 +152,13 @@ exit;
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <span>Post</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.php">Login</a>
-                        <a class="collapse-item" href="register.php">Register</a>
+                        <h6 class="collapse-header">Screens:</h6>
+                        
+                        <a class="collapse-item" href="viewpost.php">View Posts</a>
                         <a class="collapse-item" href="index.php">BBC Page</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
@@ -407,7 +407,7 @@ exit;
                                 <div class="mb-3 mt-3"> 
                                     <p>
                                         <label class="form-label mt-5">Summary</label><br>
-                                        <textarea class="form-control" name="summary"  rows="10" cols="50" required></textarea>
+                                        <textarea class="form-control" name="summary"  rows="5" cols="50" required></textarea>
                                     </p>
                                     </div>
                                     <div class="mb-3 mt-3"> 

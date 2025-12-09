@@ -93,7 +93,7 @@ include 'header.php';
         <hr style="height: 3px; background-color: black; opacity: 1; border: none;">
         <h6 class="bold"><b>WORLD OF BUSINESS</b></h6>
         
-        <div class="row pt-3">
+        <div class="row pt-3 pb-5">
             <div class="col-6">
             <img src="<?php echo $post[8]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
             <h6><a href="view.php?id=<?php echo $post[8]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[8]['title']; ?></a></h6>
@@ -106,12 +106,198 @@ include 'header.php';
             </div>
         </div>
 
+        <hr style="height: 3px; background-color: black; opacity: 1; border: none;">
+        <h6 class="bold"><b>TECHNOLOGY OF BUSINESS</b></h6>
+        <div class="row pt-3">
+            <div class="col-9">
+            <img src="<?php echo $post[10]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
+            
+            </div>
+            <div class="col-3 pt-5 mt-5">
+            <h3 style="font-weight: bold;"><a href="view.php?id=<?php echo $post[10]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[10]['title']; ?></a></h3>
+            <h6 style="font-weight: lighter;"><a href="view.php?id=<?php echo $post[10]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[10]['summary']; ?></a></h6>
+            </div>
 
+            </div>
+        </div>
+        <div class="container">
+            <hr style="height: 3px; background-color: black; opacity: 1; border: none;">
+            <h6 class="bold"><b>MORE NEWS</b></h6>
+            <div class="row pt-5">
+                <div class="col-4">
+                    <img src="<?php echo $post[11]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
+                    <h6><a href="view.php?id=<?php echo $post[11]['id'] ?>" class="text-dark text-decoration-none"><?php echo $post[11]['title']; ?></a></h6>
+                </div>
+                <div class="col-4">
+                    <img src="<?php echo $post[12]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
+                    <h6><a href="view.php?id=<?php echo $post[12]['id'] ?>" class="text-dark text-decoration-none"><?php echo $post[12]['title']; ?></a></h6>
+                </div>
+                <div class="col-4">
+                    <img src="<?php echo $post[13]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
+                    <h6><a href="view.php?id=<?php echo $post[13]['id'] ?>" class="text-dark text-decoration-none"><?php echo $post[13]['title']; ?></a></h6>
+                </div>
+            </div>
+            <div class="row pt-5">
+                <div class="col-4">
+                    <img src="<?php echo $post[14]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
+                    <h6><a href="view.php?id=<?php echo $post[14]['id'] ?>" class="text-dark text-decoration-none"><?php echo $post[14]['title']; ?></a></h6>
+                </div>
+                <div class="col-4">
+                    <img src="<?php echo $post[15]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
+                    <h6><a href="view.php?id=<?php echo $post[15]['id'] ?>" class="text-dark text-decoration-none"><?php echo $post[15]['title']; ?></a></h6>
+                </div>
+                <div class="col-4">
+                    <img src="<?php echo $post[16]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
+                    <h6><a href="view.php?id=<?php echo $post[16]['id'] ?>" class="text-dark text-decoration-none"><?php echo $post[16]['title']; ?></a></h6>
+                </div>
+            </div>
+
+
+
+        </div>
 
 
 
 
     
     </div>
+    <div class="container-fluid bg-black px-0" style="padding-bottom: 30px;">
+
+                    <div class="row g-0">
+
+                        <hr style="height: 3px; background-color: white; opacity: 1; border: none;" class="mt-3">
+                        <h6 style="font-weight: bold; color:azure;" class="mb-1"><b>BBC MAESTRO</b></h6>
+                
+                            <div id="carouselExample" class="carousel slide">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="container-fluid" >
+                                            <div class="row justify-content-center g-3">
+                                                <div class="col-4">
+                                                    <img src="<?php echo $post[17]['image_path']; ?>" class="img-fluid w-100 d-block">
+                                                </div>
+                                                <div class="col-4">
+                                                    <img src="<?php echo $post[18]['image_path']; ?>" class="img-fluid w-100 d-block">
+                                                </div>
+                                                <div class="col-4">
+                                                    <img src="<?php echo $post[19]['image_path']; ?>" class="img-fluid w-100 d-block">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="container-fluid" >
+                                            <div class="row justify-content-center g-3">
+                                                <div class="col-4">
+                                                    <img src="<?php echo $post[20]['image_path']; ?>" class="img-fluid w-100 d-block">
+                                                </div>
+                                                <div class="col-4">
+                                                    <img src="<?php echo $post[21]['image_path']; ?>" class="img-fluid w-100 d-block">
+                                                </div>
+                                                <div class="col-4">
+                                                    <img src="<?php echo $post[22]['image_path']; ?>" class="img-fluid w-100 d-block">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                    </div>
+
+</div>   
+<div class="container mt-4 pb-5">
+            <hr style="height: 3px; background-color: black; opacity: 1; border: none;" class="mt-5">
+            <h6 style="font-weight: bold;" class="mb-1"><b>MORE CULTURE</b></h6>
+
+            <div class="row pt-5">
+                <div class="col-1 ps-5" style="font-size:smaller" >
+                    3 hours
+                </div>
+                <div class="col-7">
+                    <h4><a href="view.php?id=<?php echo $post[23]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[23]['title']; ?></a></h4>
+                    <h6><a href="view.php?id=<?php echo $post[23]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[23]['summary']; ?></a></h6>
+                </div>
+                <div class="col-4">
+                <img src="<?php echo $post[23]['image_path']; ?>" class="img-fluid d-block mx-auto">
+
+                </div>
+            </div><hr>
+            <div class="row pt-5">
+                <div class="col-1 ps-5" style="font-size:smaller" >
+                    3 hours
+                </div>
+                <div class="col-7">
+                    <h4><a href="view.php?id=<?php echo $post[24]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[24]['title']; ?></a></h4>
+                    <h6><a href="view.php?id=<?php echo $post[24]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[24]['summary']; ?></a></h6>
+                </div>
+                <div class="col-4">
+                <img src="<?php echo $post[24]['image_path']; ?>" class="img-fluid d-block mx-auto">
+
+                </div>
+            </div><hr>
+            <div class="row pt-5">
+                <div class="col-1 ps-5" style="font-size:smaller" >
+                    3 hours
+                </div>
+                <div class="col-7">
+                    <h4><a href="view.php?id=<?php echo $post[25]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[25]['title']; ?></a></h4>
+                    <h6><a href="view.php?id=<?php echo $post[25]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[25]['summary']; ?></a></h6>
+                </div>
+                <div class="col-4">
+                <img src="<?php echo $post[25]['image_path']; ?>" class="img-fluid d-block mx-auto">
+
+                </div>
+            </div><hr>
+                <div class="row pt-5">
+                <div class="col-1 ps-5" style="font-size:smaller" >
+                    3 hours
+                </div>
+                <div class="col-7">
+                    <h4><a href="view.php?id=<?php echo $post[26]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[26]['title']; ?></a></h4>
+                    <h6><a href="view.php?id=<?php echo $post[26]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[26]['summary']; ?></a></h6>
+                </div>
+                <div class="col-4">
+                <img src="<?php echo $post[26]['image_path']; ?>" class="img-fluid d-block mx-auto">
+
+                </div>
+            </div><hr>
+            <div class="row pt-5">
+                <div class="col-1 ps-5" style="font-size:smaller" >
+                    3 hours
+                </div>
+                <div class="col-7">
+                    <h4><a href="view.php?id=<?php echo $post[27]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[27]['title']; ?></a></h4>
+                    <h6><a href="view.php?id=<?php echo $post[27]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[27]['summary']; ?></a></h6>
+                </div>
+                <div class="col-4">
+                <img src="<?php echo $post[27]['image_path']; ?>" class="img-fluid d-block mx-auto">
+
+                </div>
+            </div><hr>
+    
+
+            <div class="container d-flex justify-content-center">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                    <label class="btn btn-outline-dark" for="btnradio1">1</label> <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                    <label class="btn btn-outline-dark" for="btnradio2">2</label> <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                    <label class="btn btn-outline-dark" for="btnradio3">3</label> 
+                </div>
+            </div>
+
+        </div>
+
+
+
+
 </body>
 </html>
