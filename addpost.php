@@ -14,10 +14,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $summary = $_POST['summary'];
     $article = $_POST['article'];
     $category_id = $_POST['category_id'];
+    $new_category = $_POST['new_category'];
+
     
     $image_path = "";
 
+if (!empty($new_category)) {
+    // Insert new category
+    $stmt = $pdo->prepare("INSERT INTO category (name) VALUES (?)");
+    $stmt->execute([$new_category]);
 
+    // Get the new ID
+    $category_id = $pdo->lastInsertId();
+}
 
 if (!empty($_FILES['image_path']['name'])) {
 
@@ -159,7 +168,7 @@ exit;
                         <h6 class="collapse-header">Screens:</h6>
                         
                         <a class="collapse-item" href="viewpost.php">View Posts</a>
-                        <a class="collapse-item" href="index.php">BBC Page</a>
+                        <a class="collapse-item" target="_blank" href="index.php">BBC Page</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
                         <a class="collapse-item" href="addpost.php">Add A Post</a>
@@ -397,50 +406,56 @@ exit;
                                 ?>
                                 
                                 <div class="container mt-3">
-                                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
-                                <div class="mb-3 mt-3"> 
-                                    <p>
-                                        <label class="form-label mt-5">Title</label><br>
-                                        <input class="form-control" type="text" name = "title" required>
-                                    </p>
-                                </div>
-                                <div class="mb-3 mt-3"> 
-                                    <p>
-                                        <label class="form-label mt-5">Summary</label><br>
-                                        <textarea class="form-control" name="summary"  rows="5" cols="50" required></textarea>
-                                    </p>
+                                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
+                                    <div class="mb-3 mt-3"> 
+                                        <p>
+                                            <label class="form-label mt-5">Title</label><br>
+                                            <input class="form-control" type="text" name = "title" required>
+                                        </p>
                                     </div>
                                     <div class="mb-3 mt-3"> 
-                                    <p>
-                                        <label class="form-label mt-5">Article</label><br>
-                                        <textarea class="form-control" name="article"  rows="16" cols="100" required></textarea>
-                                    </p>
-                                    </div>
-                                    <div class="mb-3 mt-3"> 
-                                    <p>
-                                        <label class="form-label mt-5">Select Image To Upload</label><br>
-                                        <input type="file" name="image_path" id="fileToUpload" >
-                                    </p>
-                                    </div>
-                                    <div class="mb-3 mt-3"> 
-                                    <p>
-                                        <label class="form-label mt-5">Category id</label>
-                                        <select class="form-select" name="category_id" required>
-                                            
-                                                <?php foreach($cats as $cat): ?>
-                                                <option value="<?= $cat['id'] ?>"><?= $cat['name'] ?></option>
-                                                <?php endforeach; ?>
-                                            
-                                        </select>
-                                    </p>
-                                    </div>
-                                    <p>
-                                        <button type="submit" class = "btn btn-primary" name= "submit">Add Post</button>
-                                    </p>
-                                    
+                                        <p>
+                                            <label class="form-label mt-5">Summary</label><br>
+                                            <textarea class="form-control" name="summary"  rows="5" cols="50" required></textarea>
+                                        </p>
+                                        </div>
+                                        <div class="mb-3 mt-3"> 
+                                        <p>
+                                            <label class="form-label mt-5">Article</label><br>
+                                            <textarea class="form-control" name="article"  rows="16" cols="100" required></textarea>
+                                        </p>
+                                        </div>
+                                        <div class="mb-3 mt-3"> 
+                                        <p>
+                                            <label class="form-label mt-5">Select Image To Upload</label><br>
+                                            <input type="file" name="image_path" id="fileToUpload" >
+                                        </p>
+                                        </div>
+                                        <div class="mb-3 mt-3"> 
+                                        <p>
+                                            <label class="form-label mt-5">Category id</label>
+                                            <select class="form-select" name="category_id" required>
+                                                
+                                                    <?php foreach($cats as $cat): ?>
+                                                    <option value="<?= $cat['id'] ?>"><?= $cat['name'] ?></option>
+                                                    <?php endforeach; ?>
+                                                
+                                            </select>
+                                        </p>
+                                        </div>
+                                        <div class="mb-3 mt-3"> 
+                                        <p>
+                                            <label class="form-label mt-5">Input New Category</label>
+                                            <input class="form-control" type="text" name = "new_category">
+                                        </p>
+                                        </div>
+                                        <p>
+                                            <button type="submit" class = "btn btn-primary" name= "submit">Add Post</button>
+                                        </p>
+                                        
 
-                                </form>
-                                    <p><a href="index.php">Back to Home</a></p>
+                                    </form>
+                                        <p><a href="index.php">Back to Home</a></p>
                                 </div>
                                            
                           
@@ -488,7 +503,7 @@ exit;
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="index.php">Logout</a>
                 </div>
             </div>
         </div>

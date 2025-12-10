@@ -82,7 +82,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Screens:</h6>
-                        <a class="collapse-item" href="viewpost.php">View Posts</a>
+                        <a class="collapse-item" target="_blank" href="viewpost.php">View Posts</a>
                         <a class="collapse-item" href="index.php">BBC Page</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
@@ -405,7 +405,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="index.php">Logout</a>
                 </div>
             </div>
         </div>

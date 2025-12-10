@@ -40,7 +40,13 @@ include 'config.php';
           font-weight: 800;
           font-size: 15px;
         }
-    </style>    
+      
+      .fixed-size {
+        width: 700px;
+        height: 400px;
+        object-fit: cover;
+      }
+    </style>  
     
 
 </head>
@@ -50,15 +56,63 @@ include 'config.php';
   <div class="container">
     <div class="row pt-3">
       <div class="col-9 ">
-        <div class="row pb-4">
-          <div class="col-3 align-items-start">
-            <h3><a href="view.php?id=<?php echo $post[0]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[0]['title']; ?></a></h3>
+        <div class="row pb-4 bg-black">
+          <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                
+                  <img src="<?php echo $post[0]['image_path']; ?>" class="fixed-size d-block mx-auto">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h6 class="text-dark bg-white"><a href="view.php?id=<?php echo $post[0]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[0]['title']; ?></a></h6>
+                  </div>
+              </div>
+                <div class="carousel-item">
+                 
+                    <img src="<?php echo $post[27]['image_path']; ?>" class="fixed-size d-block mx-auto">
+                    <div class="carousel-caption d-none d-md-block">
+                      <p  class="text-dark bg-white"><a href="view.php?id=<?php echo $post[27]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[27]['title']; ?></a></p>
+                    </div>
+                  
+                </div>
+                <div class="carousel-item">
+                  
+                    <img src="<?php echo $post[28]['image_path']; ?>" class="fixed-size d-block mx-auto">
+                    <div class="carousel-caption d-none d-md-block">
+                      <p class="text-dark bg-white"><a href="view.php?id=<?php echo $post[28]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[28]['title']; ?></a></p>
+                    </div>
+                  
+                </div>
+                <div class="carousel-item">
+                
+                    <img src="<?php echo $post[29]['image_path']; ?>" class="fixed-size d-block mx-auto">
+                    <div class="carousel-caption d-none d-md-block">
+                      <p class="text-dark bg-white"><a href="view.php?id=<?php echo $post[29]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[29]['title']; ?></a></p>
+                    </div>
+                
+                </div>
+                <div class="carousel-item"> 
+              
+                    <img src="<?php echo $post[30]['image_path']; ?>" class="fixed-size d-block mx-auto">
+                    <div class="carousel-caption d-none d-md-block">
+                      <p class="text-dark bg-white"><a href="view.php?id=<?php echo $post[30]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[30]['title']; ?></a></p>
+                    </div>
+                 
+                </div>  
+              
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
-          <div class="col-9 align-items-start">
-            <img src="<?php echo $post[0]['image_path']; ?>" class="img-fluid d-block mx-auto">
-          </div>
+         
+          
         </div>
-        <div class="row align-items-start justify-content-center">
+        <div class="row align-items-start justify-content-center pt-5">
           <div class="col-3 ">
             <img src="<?php echo $post[1]['image_path']; ?>" class="img-fluid d-block mx-auto mb-3">
             <h6><a href="view.php?id=<?php echo $post[1]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[1]['title']; ?></a></h6>

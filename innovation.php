@@ -6,6 +6,8 @@ include 'header.php';
   $stmt = $pdo->prepare("SELECT * FROM posts WHERE category_id = ? ORDER BY id ASC");
   $stmt->execute([$category_id]);
   $post = $stmt->fetchAll(PDO::FETCH_ASSOC);
+ 
+
 
 ?>
 
@@ -381,12 +383,28 @@ include 'header.php';
             </div><hr>
 
             <div class="container d-flex justify-content-center">
-                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                    <label class="btn btn-outline-dark" for="btnradio1">1</label> <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                    <label class="btn btn-outline-dark" for="btnradio2">2</label> <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                    <label class="btn btn-outline-dark" for="btnradio3">3</label> 
-                </div>
+                <nav>
+                            <ul class="pagination">
+                                
+                                <!-- Previous Button -->
+                                <li class="page-item <?= ($page <= 1) ? 'disabled' : '' ?>">
+                                    <a class="page-link" href="?page=<?= $page - 1 ?>">Previous</a>
+                                </li>
+
+                                <!-- Numbered pages -->
+                                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                                    <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
+                                        <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                                    </li>
+                                <?php endfor; ?>
+
+                                <!-- Next Button -->
+                                <li class="page-item <?= ($page >= $totalPages) ? 'disabled' : '' ?>">
+                                    <a class="page-link" href="?page=<?= $page + 1 ?>">Next</a>
+                                </li>
+
+                            </ul>
+                        </nav>
             </div>
 
         </div>
