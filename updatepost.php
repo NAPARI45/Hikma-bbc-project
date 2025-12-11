@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
        <div class="mb-3 mt-3"> 
         <p>
             <label class="form-label">Summary</label><br>
-            <textarea class="form-control" name="summary"  rows="10" cols="50" ><?= htmlspecialchars($post['summary'])?></textarea>
+            <textarea class="form-control" name="summary"  rows="5" cols="50" ><?= htmlspecialchars($post['summary'])?></textarea>
         </p>
        </div>
        <div class="mb-3 mt-3"> 

@@ -1,13 +1,39 @@
 <?php include 'config.php';
 include 'header.php';
-  $category_id = 4;
 
-  $stmt = $pdo->prepare("SELECT * FROM posts WHERE category_id = ? ORDER BY id ASC");
-  $stmt->execute([$category_id]);
-  $post = $stmt->fetchAll(PDO::FETCH_ASSOC);
+ // LOAD ALL POSTS FOR THE TOP SECTIONS (first 28 items)
+    $category_id = 4;
+
+    $main_stmt = $pdo->prepare("SELECT * FROM posts WHERE category_id = ? ORDER BY id ASC");
+    $main_stmt->execute([$category_id]);
+    $post = $main_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+$limit = 3;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($page < 1) $page = 1;
+$offset = ($page - 1) * $limit;
+
+// COUNT POSTS for pagination
+$total_stmt = $pdo->prepare("SELECT COUNT(*) FROM posts WHERE category_id = ?");
+$total_stmt->execute([$category_id]);
+$total_posts = $total_stmt->fetchColumn();
+$total_pages = ceil($total_posts / $limit);
+
+// LOAD PAGINATED POSTS (FOR "MORE CULTURE")
+$stmt = $pdo->prepare("
+    SELECT * FROM posts
+    WHERE category_id = ?
+    ORDER BY id ASC
+    LIMIT $limit OFFSET $offset
+");
+$stmt->execute([$category_id]);
+$posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
+
+  
 
 
 ?>
@@ -174,13 +200,13 @@ include 'header.php';
                                         <div class="container-fluid" >
                                             <div class="row justify-content-center g-3">
                                                 <div class="col-4">
-                                                    <img src="<?php echo $post[17]['image_path']; ?>" class="img-fluid w-100 d-block">
+                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="<?php echo $post[17]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
                                                 </div>
                                                 <div class="col-4">
-                                                    <img src="<?php echo $post[18]['image_path']; ?>" class="img-fluid w-100 d-block">
+                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="<?php echo $post[18]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
                                                 </div>
                                                 <div class="col-4">
-                                                    <img src="<?php echo $post[19]['image_path']; ?>" class="img-fluid w-100 d-block">
+                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="<?php echo $post[19]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -189,13 +215,13 @@ include 'header.php';
                                         <div class="container-fluid" >
                                             <div class="row justify-content-center g-3">
                                                 <div class="col-4">
-                                                    <img src="<?php echo $post[20]['image_path']; ?>" class="img-fluid w-100 d-block">
+                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="<?php echo $post[20]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
                                                 </div>
                                                 <div class="col-4">
-                                                    <img src="<?php echo $post[21]['image_path']; ?>" class="img-fluid w-100 d-block">
+                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="<?php echo $post[21]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
                                                 </div>
                                                 <div class="col-4">
-                                                    <img src="<?php echo $post[22]['image_path']; ?>" class="img-fluid w-100 d-block">
+                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="<?php echo $post[22]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -218,87 +244,55 @@ include 'header.php';
             <hr style="height: 3px; background-color: black; opacity: 1; border: none;" class="mt-5">
             <h6 style="font-weight: bold;" class="mb-1"><b>MORE CULTURE</b></h6>
 
-            <div class="row pt-5">
-                <div class="col-1 ps-5" style="font-size:smaller" >
-                    3 hours
-                </div>
-                <div class="col-7">
-                    <h4><a href="view.php?id=<?php echo $post[23]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[23]['title']; ?></a></h4>
-                    <h6><a href="view.php?id=<?php echo $post[23]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[23]['summary']; ?></a></h6>
-                </div>
-                <div class="col-4">
-                <img src="<?php echo $post[23]['image_path']; ?>" class="img-fluid d-block mx-auto">
-
-                </div>
-            </div><hr>
-            <div class="row pt-5">
-                <div class="col-1 ps-5" style="font-size:smaller" >
-                    3 hours
-                </div>
-                <div class="col-7">
-                    <h4><a href="view.php?id=<?php echo $post[24]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[24]['title']; ?></a></h4>
-                    <h6><a href="view.php?id=<?php echo $post[24]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[24]['summary']; ?></a></h6>
-                </div>
-                <div class="col-4">
-                <img src="<?php echo $post[24]['image_path']; ?>" class="img-fluid d-block mx-auto">
-
-                </div>
-            </div><hr>
-            <div class="row pt-5">
-                <div class="col-1 ps-5" style="font-size:smaller" >
-                    3 hours
-                </div>
-                <div class="col-7">
-                    <h4><a href="view.php?id=<?php echo $post[25]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[25]['title']; ?></a></h4>
-                    <h6><a href="view.php?id=<?php echo $post[25]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[25]['summary']; ?></a></h6>
-                </div>
-                <div class="col-4">
-                <img src="<?php echo $post[25]['image_path']; ?>" class="img-fluid d-block mx-auto">
-
-                </div>
-            </div><hr>
+            <?php foreach ($posts as $p): ?>
                 <div class="row pt-5">
-                <div class="col-1 ps-5" style="font-size:smaller" >
-                    3 hours
+                    <div class="col-1 ps-5" style="font-size: smaller;">
+                        3 hours
+                    </div>
+                    <div class="col-7">
+                        <h4>
+                            <a href="view.php?id=<?= $p['id']; ?>" class="text-dark text-decoration-none">
+                                <?= $p['title']; ?>
+                            </a>
+                        </h4>
+                        <h6>
+                            <a href="view.php?id=<?= $p['id']; ?>" class="text-dark text-decoration-none">
+                                <?= $p['summary']; ?>
+                            </a>
+                        </h6>
+                    </div>
+                    <div class="col-4">
+                        <img src="<?= $p['image_path']; ?>" class="img-fluid d-block mx-auto">
+                    </div>
                 </div>
-                <div class="col-7">
-                    <h4><a href="view.php?id=<?php echo $post[26]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[26]['title']; ?></a></h4>
-                    <h6><a href="view.php?id=<?php echo $post[26]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[26]['summary']; ?></a></h6>
-                </div>
-                <div class="col-4">
-                <img src="<?php echo $post[26]['image_path']; ?>" class="img-fluid d-block mx-auto">
+                <hr>
+            <?php endforeach; ?>
 
-                </div>
-            </div><hr>
-            <div class="row pt-5">
-                <div class="col-1 ps-5" style="font-size:smaller" >
-                    3 hours
-                </div>
-                <div class="col-7">
-                    <h4><a href="view.php?id=<?php echo $post[27]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[27]['title']; ?></a></h4>
-                    <h6><a href="view.php?id=<?php echo $post[27]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[27]['summary']; ?></a></h6>
-                </div>
-                <div class="col-4">
-                <img src="<?php echo $post[27]['image_path']; ?>" class="img-fluid d-block mx-auto">
-
-                </div>
-            </div><hr>
-    
+                
 
             <div class="container d-flex justify-content-center">
-                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                    <label class="btn btn-outline-dark" for="btnradio1">1</label> <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                    <label class="btn btn-outline-dark" for="btnradio2">2</label> <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                    <label class="btn btn-outline-dark" for="btnradio3">3</label> 
+                <div class="btn-group" role="group">
+
+                    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                        <a 
+                            href="?page=<?= $i; ?>" 
+                            class="btn btn-outline-dark <?= ($i == $page) ? 'active' : '' ?>"
+                        >
+                            <?= $i; ?>
+                        </a>
+                    <?php endfor; ?>
+
                 </div>
             </div>
+
 
         </div>
 
 
 
-
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 <?php include 'footer2.php' ?>
+
