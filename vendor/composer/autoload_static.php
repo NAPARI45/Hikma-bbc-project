@@ -11,12 +11,33 @@ class ComposerStaticInit2185d2f99bcd56787481d9357a5972d3
         array (
             'PHPMailer\\PHPMailer\\' => 20,
         ),
+        'D' =>
+        array (
+            'Database\\Seeders\\' => 17,
+            'Database\\Factories\\' => 19,
+        ),
+        'A' =>
+        array (
+            'App\\' => 4,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'PHPMailer\\PHPMailer\\' =>
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
+        'Database\\Seeders\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/laravel/pint/database/seeders',
+        ),
+        'Database\\Factories\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/laravel/pint/database/factories',
+        ),
+        'App\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/laravel/pint/app',
         ),
     );
 
