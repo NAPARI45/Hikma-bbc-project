@@ -19,6 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     
     $image_path = "";
 
+
+// if(isset($title && $title == null)) {
+//     die('Title not found ');
+// }
 if (!empty($new_category)) {
     // Insert new category
     $stmt = $pdo->prepare("INSERT INTO category (name) VALUES (?)");
