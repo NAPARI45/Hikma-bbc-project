@@ -6,6 +6,27 @@ include 'header.php';
   $stmt = $pdo->prepare("SELECT * FROM posts WHERE category_id = ? ORDER BY id ASC");
   $stmt->execute([$category_id]);
   $post = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+  $limit = 5;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($page < 1) $page = 1;
+$offset = ($page - 1) * $limit;
+
+
+$total_stmt = $pdo->prepare("SELECT COUNT(*) FROM posts WHERE category_id = ?");
+$total_stmt->execute([$category_id]);
+$total_posts = $total_stmt->fetchColumn();
+$total_pages = ceil($total_posts / $limit);
+
+$stmt = $pdo->prepare("
+    SELECT * FROM posts
+    WHERE category_id = ?
+    ORDER BY id ASC
+    LIMIT $limit OFFSET $offset
+");
+
+$stmt->execute([$category_id]);
+$posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
  
 
 
@@ -264,149 +285,46 @@ include 'header.php';
             <hr style="height: 3px; background-color: black; opacity: 1; border: none;" class="mt-5">
             <h6 style="font-weight: bold;" class="mb-1"><b>MORE CULTURE</b></h6>
 
-            <div class="row pt-5">
-                <div class="col-1 ps-5" style="font-size:smaller" >
-                    3 hours
-                </div>
-                <div class="col-7">
-                    <h4><a href="view.php?id=<?php echo $post[26]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[26]['title']; ?></a></h4>
-                    <h6><a href="view.php?id=<?php echo $post[26]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[26]['summary']; ?></a></h6>
-                </div>
-                <div class="col-4">
-                <img src="<?php echo $post[26]['image_path']; ?>" class="img-fluid d-block mx-auto">
-
-                </div>
-            </div><hr>
-            <div class="row pt-5">
-                <div class="col-1 ps-5" style="font-size:smaller" >
-                    3 hours
-                </div>
-                <div class="col-7">
-                    <h4><a href="view.php?id=<?php echo $post[27]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[27]['title']; ?></a></h4>
-                    <h6><a href="view.php?id=<?php echo $post[27]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[27]['summary']; ?></a></h6>
-                </div>
-                <div class="col-4">
-                <img src="<?php echo $post[27]['image_path']; ?>" class="img-fluid d-block mx-auto">
-
-                </div>
-            </div><hr>
-            <div class="row pt-5">
-                <div class="col-1 ps-5" style="font-size:smaller" >
-                    3 hours
-                </div>
-                <div class="col-7">
-                    <h4><a href="view.php?id=<?php echo $post[28]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[28]['title']; ?></a></h4>
-                    <h6><a href="view.php?id=<?php echo $post[28]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[28]['summary']; ?></a></h6>
-                </div>
-                <div class="col-4">
-                <img src="<?php echo $post[28]['image_path']; ?>" class="img-fluid d-block mx-auto">
-
-                </div>
-            </div><hr>
+            <?php foreach ($posts as $p): ?>
                 <div class="row pt-5">
-                <div class="col-1 ps-5" style="font-size:smaller" >
-                    3 hours
+                    <div class="col-1 ps-5" style="font-size: smaller;">
+                        3 hours
+                    </div>
+                    <div class="col-7">
+                        <h4>
+                            <a href="view.php?id=<?= $p['id']; ?>" class="text-dark text-decoration-none">
+                                <?= $p['title']; ?>
+                            </a>
+                        </h4>
+                        <h6>
+                            <a href="view.php?id=<?= $p['id']; ?>" class="text-dark text-decoration-none">
+                                <?= $p['summary']; ?>
+                            </a>
+                        </h6>
+                    </div>
+                    <div class="col-4">
+                        <img src="<?= $p['image_path']; ?>" class="img-fluid d-block mx-auto">
+                    </div>
                 </div>
-                <div class="col-7">
-                    <h4><a href="view.php?id=<?php echo $post[29]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[29]['title']; ?></a></h4>
-                    <h6><a href="view.php?id=<?php echo $post[29]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[29]['summary']; ?></a></h6>
-                </div>
-                <div class="col-4">
-                <img src="<?php echo $post[29]['image_path']; ?>" class="img-fluid d-block mx-auto">
+                <hr>
+            <?php endforeach; ?>
 
-                </div>
-            </div><hr>
-            <div class="row pt-5">
-                <div class="col-1 ps-5" style="font-size:smaller" >
-                    3 hours
-                </div>
-                <div class="col-7">
-                    <h4><a href="view.php?id=<?php echo $post[30]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[30]['title']; ?></a></h4>
-                    <h6><a href="view.php?id=<?php echo $post[30]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[30]['summary']; ?></a></h6>
-                </div>
-                <div class="col-4">
-                <img src="<?php echo $post[30]['image_path']; ?>" class="img-fluid d-block mx-auto">
-
-                </div>
-            </div><hr>
-            <div class="row pt-5">
-                <div class="col-1 ps-5" style="font-size:smaller" >
-                    3 hours
-                </div>
-                <div class="col-7">
-                    <h4><a href="view.php?id=<?php echo $post[31]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[31]['title']; ?></a></h4>
-                    <h6><a href="view.php?id=<?php echo $post[31]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[31]['summary']; ?></a></h6>
-                </div>
-                <div class="col-4">
-                <img src="<?php echo $post[31]['image_path']; ?>" class="img-fluid d-block mx-auto">
-
-                </div>
-            </div><hr>
-            <div class="row pt-5">
-                <div class="col-1 ps-5" style="font-size:smaller" >
-                    3 hours
-                </div>
-                <div class="col-7">
-                    <h4><a href="view.php?id=<?php echo $post[32]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[32]['title']; ?></a></h4>
-                    <h6><a href="view.php?id=<?php echo $post[32]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[32]['summary']; ?></a></h6>
-                </div>
-                <div class="col-4">
-                <img src="<?php echo $post[32]['image_path']; ?>" class="img-fluid d-block mx-auto">
-
-                </div>
-            </div><hr>
-            <div class="row pt-5">
-                <div class="col-1 ps-5" style="font-size:smaller" >
-                    3 hours
-                </div>
-                <div class="col-7">
-                    <h4><a href="view.php?id=<?php echo $post[33]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[33]['title']; ?></a></h4>
-                    <h6><a href="view.php?id=<?php echo $post[33]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[33]['summary']; ?></a></h6>
-                </div>
-                <div class="col-4">
-                <img src="<?php echo $post[33]['image_path']; ?>" class="img-fluid d-block mx-auto">
-
-                </div>
-            </div><hr>
-            <div class="row pt-5 pb-5">
-                <div class="col-1 ps-5" style="font-size:smaller" >
-                    3 hours
-                </div>
-                <div class="col-7">
-                    <h4><a href="view.php?id=<?php echo $post[34]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[34]['title']; ?></a></h4>
-                    <h6><a href="view.php?id=<?php echo $post[34]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[34]['summary']; ?></a></h6>
-                </div>
-                <div class="col-4">
-                <img src="<?php echo $post[34]['image_path']; ?>" class="img-fluid d-block mx-auto">
-
-                </div>
-            </div><hr>
+                
 
             <div class="container d-flex justify-content-center">
-                <nav>
-                            <ul class="pagination">
-                                
-                                <!-- Previous Button -->
-                                <li class="page-item <?= ($page <= 1) ? 'disabled' : '' ?>">
-                                    <a class="page-link" href="?page=<?= $page - 1 ?>">Previous</a>
-                                </li>
+                <div class="btn-group" role="group">
 
-                                <!-- Numbered pages -->
-                                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                                    <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
-                                        <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
-                                    </li>
-                                <?php endfor; ?>
+                    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                        <a 
+                            href="?page=<?= $i; ?>" 
+                            class="btn btn-outline-dark <?= ($i == $page) ? 'active' : '' ?>"
+                        >
+                            <?= $i; ?>
+                        </a>
+                    <?php endfor; ?>
 
-                                <!-- Next Button -->
-                                <li class="page-item <?= ($page >= $totalPages) ? 'disabled' : '' ?>">
-                                    <a class="page-link" href="?page=<?= $page + 1 ?>">Next</a>
-                                </li>
-
-                            </ul>
-                        </nav>
+                </div>
             </div>
-
         </div>
 
 

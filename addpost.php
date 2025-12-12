@@ -437,7 +437,7 @@ exit;
                                             <select class="form-select" name="category_id" required>
                                                 
                                                     <?php foreach($cats as $cat): ?>
-                                                    <option value="<?= $cat['id'] ?>"><?= $cat['name'] ?></option>
+                                                    <option value="<?= $cat['id'] ?>"><?= $cat['name_cat'] ?></option>
                                                     <?php endforeach; ?>
                                                 
                                             </select>

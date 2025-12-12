@@ -2,23 +2,22 @@
 
 
 
-// How many posts per page
+
 $limit = 25;
 
-// Get current page number from URL (default = 1)
+
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 if ($page < 1) $page = 1;
 
-// Calculate offset
+
 $offset = ($page - 1) * $limit;
 
-// Count total posts (only non-deleted)
 $totalStmt = $pdo->query("SELECT COUNT(*) FROM posts WHERE post_deleted = 0");
 $totalPosts = $totalStmt->fetchColumn();
 
 $totalPages = ceil($totalPosts / $limit);
 
-// Fetch posts for current page
+
 $stmt = $pdo->prepare("SELECT * FROM posts WHERE post_deleted = 0 ORDER BY id ASC LIMIT :limit OFFSET :offset");
 $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
@@ -412,7 +411,7 @@ exit;
                                                     <select class="form-select" name="category_id" required>
                                                         
                                                             <?php foreach($cats as $cat): ?>
-                                                            <option value="<?= $cat['id'] ?>"><?= $cat['name'] ?></option>
+                                                            <option value="<?= $cat['id'] ?>"><?= $cat['name_cat'] ?></option>
                                                             <?php endforeach; ?>
                                                         
                                                     </select>

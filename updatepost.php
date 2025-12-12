@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
             <label class="form-label">Category id</label>
             <select class="form-control" name="category_id" required>
                 <?php foreach($cats as $cat): ?>
-                    <option value="<?= $cat['id'] ?>" <?= $cat['id'] == $post['category_id']? 'selected' : ''?>><?= $cat['name'] ?></option>
+                    <option value="<?= $cat['id'] ?>" <?= $cat['id'] == $post['category_id']? 'selected' : ''?>><?= $cat['name_cat'] ?></option>
                 <?php endforeach; ?>
 
 
