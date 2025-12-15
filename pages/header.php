@@ -1,39 +1,6 @@
 <?php ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header</title>
-    <link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
 
-        body {
-          font-family: "Merriweather", sans-serif, Times;
-        }
-        .bbc-box {
-            display: inline-block;
-            background-color: black;
-            color: white;
-            width: 40px;
-            height: 40px;
-            padding: 5px 5px 5px 5px ;
-            font-family: "Merriweather", sans-serif, Times;
-            text-align: center;
-            font-size: 25px;
-            font-weight: bold;
-            justify-content: center;
-            box-sizing: border-box;
-        }
-       
-      
-
-
-    </style>
-</head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 border-bottom border-grey">

@@ -80,15 +80,15 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <hr>
                     </div>
                     <div class="col-3 ">
-                        <img src="<?php echo $post[2]['image_path']; ?>" class="img-fluid d-block mx-auto mb-3">
+                        <img src="/Hikma-bbc-project/<?php echo $post[2]['image_path']; ?>" class="img-fluid d-block mx-auto mb-3">
                         <h6><a href="view.php?id=<?php echo $post[2]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[2]['title']; ?></a></h6><hr>
                     </div>
                     <div class="col-3 ">
-                        <img src="<?php echo $post[3]['image_path']; ?>" class="img-fluid d-block mx-auto mb-3">
+                        <img src="/Hikma-bbc-project/<?php echo $post[3]['image_path']; ?>" class="img-fluid d-block mx-auto mb-3">
                         <h6><a href="view.php?id=<?php echo $post[3]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[3]['title']; ?></a></h6><hr>
                     </div>
                     <div class="col-3">
-                        <img src="<?php echo $post[4]['image_path']; ?>" class="img-fluid d-block mx-auto mb-3">
+                        <img src="/Hikma-bbc-project/<?php echo $post[4]['image_path']; ?>" class="img-fluid d-block mx-auto mb-3">
                         <h6><a href="view.php?id=<?php echo $post[4]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[4]['title']; ?></a></h6><hr>
                     </div>
                     <div class="row pt-5 pb-5">
@@ -107,7 +107,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 
         </div>
         <div class="col-3">
-            <img src="<?php echo $post[5]['image_path']; ?>" class="img-fluid d-block mx-auto mb-3">
+            <img src="/Hikma-bbc-project/<?php echo $post[5]['image_path']; ?>" class="img-fluid d-block mx-auto mb-3">
             <h6><a href="view.php?id=<?php echo $post[5]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[5]['title']; ?></a></h6>
             <p style="font-size: 10px;"><?php echo $post[5]['summary'];?></p><hr>
             <div class="row"><h6><a href="view.php?id=<?php echo $post[6]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[6]['title']; ?></a></h6></div><hr>
@@ -121,11 +121,11 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         <div class="row pt-3 pb-5">
             <div class="col-6">
-            <img src="<?php echo $post[8]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
+            <img src="/Hikma-bbc-project/<?php echo $post[8]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
             <h6><a href="view.php?id=<?php echo $post[8]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[8]['title']; ?></a></h6>
             </div>
             <div class="col-6">
-            <img src="<?php echo $post[9]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
+            <img src="/Hikma-bbc-project/<?php echo $post[9]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
             <h6><a href="view.php?id=<?php echo $post[9]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[9]['title']; ?></a></h6>
             </div>
 
@@ -136,7 +136,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <h6 class="bold"><b>TECHNOLOGY OF BUSINESS</b></h6>
         <div class="row pt-3">
             <div class="col-9">
-            <img src="<?php echo $post[10]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
+            <img src="/Hikma-bbc-project/<?php echo $post[10]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
             
             </div>
             <div class="col-3 pt-5 mt-5">
@@ -151,29 +151,29 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <h6 class="bold"><b>MORE NEWS</b></h6>
             <div class="row pt-5">
                 <div class="col-4">
-                    <img src="<?php echo $post[11]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
+                    <img src="/Hikma-bbc-project/<?php echo $post[11]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
                     <h6><a href="view.php?id=<?php echo $post[11]['id'] ?>" class="text-dark text-decoration-none"><?php echo $post[11]['title']; ?></a></h6>
                 </div>
                 <div class="col-4">
-                    <img src="<?php echo $post[12]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
+                    <img src="/Hikma-bbc-project/<?php echo $post[12]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
                     <h6><a href="view.php?id=<?php echo $post[12]['id'] ?>" class="text-dark text-decoration-none"><?php echo $post[12]['title']; ?></a></h6>
                 </div>
                 <div class="col-4">
-                    <img src="<?php echo $post[13]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
+                    <img src="/Hikma-bbc-project/<?php echo $post[13]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
                     <h6><a href="view.php?id=<?php echo $post[13]['id'] ?>" class="text-dark text-decoration-none"><?php echo $post[13]['title']; ?></a></h6>
                 </div>
             </div>
             <div class="row pt-5">
                 <div class="col-4">
-                    <img src="<?php echo $post[14]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
+                    <img src="/Hikma-bbc-project/<?php echo $post[14]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
                     <h6><a href="view.php?id=<?php echo $post[14]['id'] ?>" class="text-dark text-decoration-none"><?php echo $post[14]['title']; ?></a></h6>
                 </div>
                 <div class="col-4">
-                    <img src="<?php echo $post[15]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
+                    <img src="/Hikma-bbc-project/<?php echo $post[15]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
                     <h6><a href="view.php?id=<?php echo $post[15]['id'] ?>" class="text-dark text-decoration-none"><?php echo $post[15]['title']; ?></a></h6>
                 </div>
                 <div class="col-4">
-                    <img src="<?php echo $post[16]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
+                    <img src="/Hikma-bbc-project/<?php echo $post[16]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
                     <h6><a href="view.php?id=<?php echo $post[16]['id'] ?>" class="text-dark text-decoration-none"><?php echo $post[16]['title']; ?></a></h6>
                 </div>
             </div>
@@ -200,13 +200,13 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <div class="container-fluid" >
                                             <div class="row justify-content-center g-3">
                                                 <div class="col-4">
-                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="<?php echo $post[17]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
+                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="/Hikma-bbc-project/<?php echo $post[17]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
                                                 </div>
                                                 <div class="col-4">
-                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="<?php echo $post[18]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
+                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="/Hikma-bbc-project/<?php echo $post[18]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
                                                 </div>
                                                 <div class="col-4">
-                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="<?php echo $post[19]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
+                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="/Hikma-bbc-project/<?php echo $post[19]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -215,13 +215,13 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <div class="container-fluid" >
                                             <div class="row justify-content-center g-3">
                                                 <div class="col-4">
-                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="<?php echo $post[20]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
+                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="/Hikma-bbc-project/<?php echo $post[20]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
                                                 </div>
                                                 <div class="col-4">
-                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="<?php echo $post[21]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
+                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="/Hikma-bbc-project/<?php echo $post[21]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
                                                 </div>
                                                 <div class="col-4">
-                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="<?php echo $post[22]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
+                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="/Hikma-bbc-project/<?php echo $post[22]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -262,7 +262,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </h6>
                     </div>
                     <div class="col-4">
-                        <img src="<?= $p['image_path']; ?>" class="img-fluid d-block mx-auto">
+                        <img src="/Hikma-bbc-project/<?= $p['image_path']; ?>" class="img-fluid d-block mx-auto">
                     </div>
                 </div>
                 <hr>

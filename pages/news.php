@@ -104,7 +104,7 @@
                         <h3><a href="view.php?id=<?php echo $post[12]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[12]['title']; ?></a></h3>
                     </div>
                     <div class="col-9 align-items-start">
-                        <img src="<?php echo $post[12]['image_path']; ?>" class="img-fluid d-block mx-auto">
+                        <img src="/Hikma-bbc-project/<?php echo $post[12]['image_path']; ?>" class="img-fluid d-block mx-auto">
                     </div>
                 </div>
                 <div class="row align-items-start justify-content-center">
@@ -113,7 +113,7 @@
                         $current_post = $post[$i];
                     ?>
                         <div class="col-3 ">
-                            <img src="<?php echo $current_post['image_path']; ?>" class="img-fluid d-block mx-auto mb-3">
+                            <img src="/Hikma-bbc-project/<?php echo $current_post['image_path']; ?>" class="img-fluid d-block mx-auto mb-3">
                             <h6><a href="view.php?id=<?php echo $current_post['id']; ?>" class="text-dark text-decoration-none"> <?php echo $current_post['title']; ?></a></h6>
                             <hr>
                         </div>
@@ -127,7 +127,7 @@
 
 
             <div class="col-3">
-                <img src="<?php echo $post[17]['image_path']; ?>" class="img-fluid d-block mx-auto mb-3">
+                <img src="/Hikma-bbc-project/<?php echo $post[17]['image_path']; ?>" class="img-fluid d-block mx-auto mb-3">
                 <h6><a href="view.php?id=<?php echo $post[17]['id']; ?>" class="text-dark text-decoration-none"> <?php echo $post[17]['title']; ?></a></h6>
                 <p style="font-size: 10px;"><?php echo $post[17]['summary'];?></p><hr>
                 <?php 
