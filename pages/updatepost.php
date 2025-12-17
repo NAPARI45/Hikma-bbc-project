@@ -1,11 +1,13 @@
 <?php include 'config.php';
+include 'eg.php';
 $id = $_GET['id'] ?? null;
 
 if (!$id) {
     die ("Incorrect id");
 }
 
-$stmt = $pdo->prepare("SELECT title, summary, image_path, article, category_id FROM posts WHERE id = ?");
+
+$stmt = $pdo->prepare((new sqlcommands())->select("posts", ["title", "summary", "image_path", "article", "category_id"], "id = ?", ""));
 $stmt->execute([$id]);
 $post = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -50,17 +52,22 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 
 
     // update the post
-    $stmt = $pdo->prepare("UPDATE posts SET title=?,summary=?,article=?,category_id=?,image_path=? WHERE id = ?");
+    // $stmt = $pdo->prepare("UPDATE posts SET title=?,summary=?,article=?,category_id=?,image_path=? WHERE id = ?");
+    $stmt = $pdo->prepare((new sqlcommands())->update("posts", ["title", "summary", "article", "category_id", "image_path"], ["?", "?", "?", "?", "?"], "id = ?"));
     $stmt->execute([$title,$summary,$article,$category_id,$image_path, $id]);
 
     header("Location: admin_users.php");
     exit;
+
+    
+    
 }
+ include 'admin_header.php';
 
 ?>
 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -69,9 +76,9 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"/>
     <script src="cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
+<body> -->
     <?php 
-    $cats = $pdo->query("SELECT * FROM category")->fetchAll();
+    $cats = $pdo->query((new sqlcommands())->select("category", ["*"], "", ""))->fetchAll();
     ?>
     <div  class="container m-3">
     <form action="update.php?id=<?= $id ?>"  method="POST" enctype="multipart/form-data">
@@ -124,5 +131,4 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 
     <p><a href="admin_users.php">Back to Home</a></p>
     </div>
-</body>
-</html>
+<?php include 'admin_footer.php'; ?>

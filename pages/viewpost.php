@@ -1,7 +1,8 @@
 <?php include 'config.php';
+include 'eg.php';
 
 
-
+$errors = [];
 
 $limit = 25;
 
@@ -12,27 +13,42 @@ if ($page < 1) $page = 1;
 
 $offset = ($page - 1) * $limit;
 
-$totalStmt = $pdo->query("SELECT COUNT(*) FROM posts WHERE post_deleted = 0");
+// $totalStmt = $pdo->query("SELECT COUNT(*) FROM posts WHERE post_deleted = 0");
+$totalStmt = $pdo->query((new sqlcommands())->select("posts", ["COUNT(*)"], "post_deleted = 0", ""));
 $totalPosts = $totalStmt->fetchColumn();
 
 $totalPages = ceil($totalPosts / $limit);
 
 
-$stmt = $pdo->prepare("SELECT * FROM posts WHERE post_deleted = 0 ORDER BY id ASC LIMIT :limit OFFSET :offset");
-$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+// $stmt = $pdo->prepare("SELECT * FROM posts WHERE post_deleted = 0 ORDER BY id ASC LIMIT :limit OFFSET :offset");
+$stmt = $pdo->prepare(
+    (new sqlcommands())->select("posts", ["*"], "post_deleted = 0", "id_asc")
+    . " LIMIT :limit OFFSET :offset"
+);
+
+$stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+$stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
 $stmt->execute();
 
 
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $title = $_POST['title'];
-    $summary = $_POST['summary'];
-    $article = $_POST['article'];
-    $category_id = $_POST['category_id'];
+    $title = trim($_POST['title'] ?? '');
+    $summary = trim($_POST['summary'] ?? '') ;
+    $article = trim($_POST['article'] ?? '');
+    $category_id = trim($_POST['category_id'] ?? '');
     
+    
+
+    if(empty($title))           $errors[] = "Title is required";
+    if(empty($summary))         $errors[] = "Summary is required";
+    if(empty($article))         $errors[] = "Article is required";
+    if(empty($category_id))     $errors[] = "Category ID is required";
+
+
     $image_path = "";
+
 
 
 
@@ -47,19 +63,30 @@ if (!empty($_FILES['image_path']['name'])) {
 
         if (move_uploaded_file($_FILES["image_path"]["tmp_name"], $target_file)) {
             $image_path = $target_file;
+        } else{
+            $errors[] =  'Failed to upload image';
         };
     }
 
 
 
+if(empty($errors)) {
+    $stmt = $pdo->prepare((new sqlcommands())->insert("posts", ["title", "summary", "image_path", "category_id", "article"], ["?","?","?","?","?"]));
+    $stmt->execute([$title, $summary, $image_path, $category_id, $article]);
+    echo "Post successfully added!";
+} 
+else {
+    foreach ($errors as $error) {
+        echo "<p style='color:red;'>$error</p>";
+    }
+    
+}
 
-$stmt = $pdo->prepare("INSERT INTO posts(title,summary,image_path,category_id, article) VALUES (?,?,?,?,?)");
-$stmt->execute([$title, $summary, $image_path, $category_id, $article]);
 
 
-
-header("Location: index.php");
+header("Location: " . $_SERVER['PHP_SELF']);
 exit;
+
 }
 include 'admin_header.php';
 
@@ -89,7 +116,7 @@ include 'admin_header.php';
                                 </div>
                                 <div class="modal-body">
                                         <?php 
-                                        $cats = $pdo->query("SELECT * FROM category")->fetchAll();
+                                        $cats = $pdo->query((new sqlcommands())->select("category", ["*"], "", ""))->fetchAll();
                                         ?>
                                         
                                         <div class="container mt-3">

@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include 'config.php';
+include 'eg.php';
 
 
  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -11,8 +12,8 @@ include 'config.php';
         die("All fields are required");
     }
 
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-    $stmt->execute([$email]);
+    $stmt = $pdo->prepare((new sqlcommands())->select("users", ["*"], "email = ?", ""));
+    $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$user) {

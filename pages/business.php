@@ -1,10 +1,10 @@
 <?php include 'config.php';
 include 'header.php';
+include 'eg.php';
 
  // LOAD ALL POSTS FOR THE TOP SECTIONS (first 28 items)
     $category_id = 4;
-
-    $main_stmt = $pdo->prepare("SELECT * FROM posts WHERE category_id = ? ORDER BY id ASC");
+    $main_stmt = $pdo->prepare((new sqlcommands())->select("posts", ["*"], "category_id = ?", "id_asc"));
     $main_stmt->execute([$category_id]);
     $post = $main_stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -14,19 +14,15 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 if ($page < 1) $page = 1;
 $offset = ($page - 1) * $limit;
 
-// COUNT POSTS for pagination
-$total_stmt = $pdo->prepare("SELECT COUNT(*) FROM posts WHERE category_id = ?");
+// COUNT POSTS for pagination"SELECT COUNT(*) FROM posts WHERE category_id = ?"
+$total_stmt = $pdo->prepare((new sqlcommands())->count("posts", "category_id = ?"));
 $total_stmt->execute([$category_id]);
 $total_posts = $total_stmt->fetchColumn();
 $total_pages = ceil($total_posts / $limit);
 
 // LOAD PAGINATED POSTS (FOR "MORE CULTURE")
-$stmt = $pdo->prepare("
-    SELECT * FROM posts
-    WHERE category_id = ?
-    ORDER BY id ASC
-    LIMIT $limit OFFSET $offset
-");
+$stmt = $pdo->prepare( (new sqlcommands())->select("posts", ["*"], "category_id = ?", "id_asc") . " LIMIT $limit OFFSET $offset") ;
+
 $stmt->execute([$category_id]);
 $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

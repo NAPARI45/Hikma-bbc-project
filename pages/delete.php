@@ -1,5 +1,6 @@
 <?php
 include 'config.php';
+include 'eg.php';
 
 if (!isset($_GET['id'])) {
     die("Invalid request");
@@ -7,7 +8,7 @@ if (!isset($_GET['id'])) {
 
 $id = (int) $_GET['id'];
 
-$stmt = $pdo->prepare("UPDATE posts SET post_deleted = 1, deleted_at = NOW() WHERE id = ?");
+$stmt = $pdo->prepare((new sqlcommands())->update("posts", ["post_deleted", "deleted_at"], ["1", "NOW()"], "id =?"));
 $stmt->execute([$id]);
 
 header("Location: index.php");

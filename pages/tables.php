@@ -3,7 +3,8 @@
 include 'config.php';
 
 
-$stmt = $pdo->query("SELECT * FROM users ORDER BY id ASC");
+
+$stmt = $pdo->query((new sqlcommands())->select("users", ["*"], "", "id_asc"));
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 

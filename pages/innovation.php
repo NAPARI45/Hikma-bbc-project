@@ -1,9 +1,9 @@
 <?php include 'config.php';
 include 'header.php';
-
+include 'eg.php';
   $category_id = 5;
 
-  $stmt = $pdo->prepare("SELECT * FROM posts WHERE category_id = ? ORDER BY id ASC");
+  $stmt = $pdo->prepare( (new sqlcommands())->select("posts", ["*"], "category_id = ?", "id_desc" ));
   $stmt->execute([$category_id]);
   $post = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -13,17 +13,12 @@ if ($page < 1) $page = 1;
 $offset = ($page - 1) * $limit;
 
 
-$total_stmt = $pdo->prepare("SELECT COUNT(*) FROM posts WHERE category_id = ?");
+$total_stmt = $pdo->prepare((new sqlcommands())->select("posts", ["COUNT(*)"], "category_id = ?", ""));
 $total_stmt->execute([$category_id]);
 $total_posts = $total_stmt->fetchColumn();
 $total_pages = ceil($total_posts / $limit);
 
-$stmt = $pdo->prepare("
-    SELECT * FROM posts
-    WHERE category_id = ?
-    ORDER BY id ASC
-    LIMIT $limit OFFSET $offset
-");
+$stmt = $pdo->prepare( (new sqlcommands())->select("posts", ["*"], "category_id = ?", "id_asc") . "LIMIT $limit OFFSET $offset");
 
 $stmt->execute([$category_id]);
 $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);

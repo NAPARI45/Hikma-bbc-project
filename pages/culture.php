@@ -1,10 +1,11 @@
 <?php include 'config.php';
 
     include 'header.php';
+    include 'eg.php';
 
   $category_id = 6;
-
-  $stmt = $pdo->prepare("SELECT * FROM posts WHERE category_id = ? ORDER BY id ASC");
+ 
+  $stmt = $pdo->prepare((new sqlcommands())->select("posts", ["*"], "category_id = ?", "id_asc"));
   $stmt->execute([$category_id]);
   $post = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

@@ -25,7 +25,7 @@
         
         //if email already exists
         if (empty($errors)) {
-            $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
+            $stmt = $pdo->prepare((new sqlcommands())->select("users", ["id"], "email = ?", ""));
             $stmt->execute([$email]);
 
             if ($stmt->fetch()) {

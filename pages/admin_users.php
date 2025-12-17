@@ -17,7 +17,8 @@ if ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'superadmin') {
 if (isset($_POST['update_role'])) {
     $user_id = (int)$_POST['user_id'];
     $new_role = $_POST['role'];
-    $stmt = $pdo->prepare("UPDATE users SET role = ? WHERE id = ?");
+    // $stmt = $pdo->prepare("UPDATE users SET role = ? WHERE id = ?");
+    $stmt = $pdo->prepare((new sqlcommands())->update("users", ["role"], ["?"], "id = ?"));
     $stmt->execute([$new_role, $user_id]);
     header("Location: admin_users.php");
     exit;

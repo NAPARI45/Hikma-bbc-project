@@ -1,8 +1,8 @@
-<?php include 'config.php'?>
+<?php include 'config.php';
+include 'eg.php';
 
-<?php
 
-  $stmt = $pdo->query("SELECT * FROM posts ORDER BY id ASC");
+  $stmt = $pdo->query((new sqlcommands())->select("posts", ["*"], "", "id_asc"));
   // $stmt->execute([$id]);
   $post = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

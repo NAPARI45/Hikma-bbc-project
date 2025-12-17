@@ -1,14 +1,10 @@
 
 <?php  
-session_start();
+
 include 'config.php';
-?>
+include 'eg.php';
 
-
-
-<?php
-
-  $stmt = $pdo->query("SELECT * FROM posts ORDER BY id DESC");
+  $stmt = $pdo->query((new sqlcommands())->select("posts", ["*"], "post_deleted = 0", "id_desc"));
   // $stmt->execute([$id]);
   $post = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

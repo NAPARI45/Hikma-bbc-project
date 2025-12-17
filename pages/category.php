@@ -1,12 +1,12 @@
 <?php 
 include 'config.php'; 
+include 'eg.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id'];
     $slug = $_POST['slug'];
     $name_cat = $_POST['name_cat'];
-
-    $stmt = $pdo->prepare("INSERT INTO category (id, slug, name_cat) VALUES (?, ?, ?)");
+    $stmt = $pdo->prepare((new sqlcommands())->insert("category", ["id", "slug", "name_cat"], ["?", "?", "?"]));
     $stmt->execute([$id, $slug, $name_cat]);
 
     header("Location: category.php");
