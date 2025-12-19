@@ -1,6 +1,6 @@
 
 <?php include 'config.php';
-include 'eg.php';
+
 $errors = [];
 
 
@@ -23,34 +23,37 @@ if (empty($errors)) {
     if (!empty($new_category)) {
         // Insert new category
         // $stmt = $pdo->prepare("INSERT INTO category (name_cat) VALUES (?)");
-        $stmt = $pdo->prepare($insertpost = (new sqlcommands())->insert("category", ["name_cat"], ["?"]));
-        $stmt->execute([$new_category]);
+        $stmt = $sql->insert("category", ["name_cat"], [$new_category]);
+     
 
         // Get the new ID
         $category_id = $pdo->lastInsertId();
     }
-    if (!empty($_FILES['image_path']['name'])) {
 
-        // 1. Filesystem path (for PHP)
-        $upload_dir = __DIR__ . "/../uploads/";
+ if (!empty($_FILES['image_path']['name'])) {
 
-        // 2. URL path (for browser)
-        $image_path = "uploads/" . basename($_FILES["image_path"]["name"]);
+    $upload_dir = __DIR__ . '/../uploads/';
 
-        if (!file_exists($upload_dir)) {
-            mkdir($upload_dir, 0777, true);
-        }
-
-        if (move_uploaded_file(
-            $_FILES["image_path"]["tmp_name"],
-            $upload_dir . basename($_FILES["image_path"]["name"])
-        )) {
-            // ✔ save $image_path into DB
-        }
+    if (!file_exists($upload_dir)) {
+        mkdir($upload_dir, 0777, true);
     }
+
+    $extension = pathinfo($_FILES['image_path']['name'], PATHINFO_EXTENSION);
+
+    $filename = uniqid('post_', true) . '.' . $extension;
+
+    $image_path = 'uploads/' . $filename; // STORE ONLY THIS
+
+    if (move_uploaded_file(
+        $_FILES['image_path']['tmp_name'],
+        $upload_dir . $filename
+    )) {
+        // ✅ Save $image_path into DB
+    }
+}
+
     // $stmt = $pdo->prepare("INSERT INTO posts(title,summary,image_path,category_id, article) VALUES (?,?,?,?,?)");
-    $stmt = $pdo->prepare((new sqlcommands())->insert("posts", ["title", "summary", "image_path", "category_id", "article"], ["?","?","?","?","?"]));
-    $stmt->execute([$title, $summary, $image_path, $category_id, $article]);
+    $stmt = $sql->insert("posts", ["title", "summary", "image_path", "category_id", "article"], [$title, $summary, $image_path, $category_id, $article]);
     echo 'Post saved succesfully';
 } else {
     $_SESSION['errors'] = $errors;
@@ -95,7 +98,7 @@ exit;
         <div class="card-body">
                 <?php 
                 // $cats = $pdo->query("SELECT * FROM category")->fetchAll();
-                $cats = $pdo->query((new sqlcommands())->select("category", ["*"], "", ""))->fetchAll();
+                $cats = $sql->select("category", ["*"]);
                 ?>
                 
                 <div class="container mt-3">

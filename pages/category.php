@@ -1,20 +1,21 @@
 <?php 
 include 'config.php'; 
-include 'eg.php';
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id'];
     $slug = $_POST['slug'];
     $name_cat = $_POST['name_cat'];
-    $stmt = $pdo->prepare((new sqlcommands())->insert("category", ["id", "slug", "name_cat"], ["?", "?", "?"]));
-    $stmt->execute([$id, $slug, $name_cat]);
+    $post = $sql->insert("category", ["id", "slug", "name_cat"], [$id, $slug, $name_cat]);
 
     header("Location: category.php");
     exit;
 }
 
 // FETCH CATEGORY LIST
-$categories = $pdo->query("SELECT * FROM category")->fetchAll(PDO::FETCH_ASSOC);
+// SELECT * FROM category WHERE category_deleted = 0"
+$categories = $sql->select("category", ["id", "slug", "name_cat"], "category_deleted = ?", [0], "id_asc");
+
 
  include 'admin_header.php'; 
 ?>
@@ -55,7 +56,7 @@ $categories = $pdo->query("SELECT * FROM category")->fetchAll(PDO::FETCH_ASSOC);
                                                 
                                                 <td>
                                 
-                                                    <a href="delete.php?id=<?= $category['id']; ?>" class = "btn btn-primary" onclick= "return confirm('Are you sure you want to delete this post?');">Delete</a><br>
+                                                    <a href="deletecategory.php?id=<?= $category['id']; ?>" class = "btn btn-primary" onclick= "return confirm('Are you sure you want to delete this post?');">Delete</a><br>
 
 
                                                 </td>

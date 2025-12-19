@@ -1,16 +1,35 @@
 <?php 
-
 include 'config.php';
 
+if (isset($_POST['update_role'])) {
+    $user_id = $_POST['user_id'];
+    $role = $_POST['role'];
 
+    // Update user role using your SQL class
+    $updated = $sql->update(
+        "users", 
+        ["role", "updated_at"], 
+        [$role, date('Y-m-d H:i:s')], 
+        "id = ?", 
+        [$user_id]
+    );
 
-$stmt = $pdo->query((new sqlcommands())->select("users", ["*"], "", "id_asc"));
-$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if ($updated) {
+        // reload the page to show updated role
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    } else {
+        echo "<div class='alert alert-danger'>Failed to update role.</div>";
+    }
+}
 
+$post = $sql->select("users", ["*"], "user_deleted = ?", [0], "id_asc");
+$users = $post;
 
 include 'admin_header.php'; 
-
 ?>
+
+
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -62,7 +81,7 @@ include 'admin_header.php';
                                                 </form>
                                             </td>
                                             <td>
-                                                <a href="?delete=<?= $user['id']; ?>" class="btn btn-primary"  onclick="return confirm('Are you sure?')">Delete</a>
+                                                <a href="deletetables.php?id=<?= $user['id']; ?>" class="btn btn-primary"  onclick="return confirm('Are you sure?')">Delete</a>
                                             </td>
                                             <?php endforeach ?>
                                         </tr>

@@ -1,15 +1,14 @@
-<?php
-include 'config.php';
-include 'eg.php';
+<?php 
+include 'config.php'; 
 
-if (!isset($_GET['id'])) {
-    die("Invalid request");
-}
+if (!isset($_GET['id'])) { 
+    die("Invalid request"); 
+} 
 
-$id = (int) $_GET['id'];
+$id = (int) $_GET['id']; 
 
-$stmt = $pdo->prepare((new sqlcommands())->update("posts", ["post_deleted", "deleted_at"], ["1", "NOW()"], "id =?"));
-$stmt->execute([$id]);
+$sql->update("posts", ["post_deleted", "deleted_at"], ["1", "date('Y-m-d H:i:s')"], "id =?", [$id]);
 
-header("Location: index.php");
+
+header("Location: viewpost.php"); 
 exit;

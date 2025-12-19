@@ -1,5 +1,10 @@
 <?php
-session_start();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+
 $host = "localhost";
 $user = "root";
 $db = "bbcwebsite";
@@ -13,9 +18,9 @@ try {
 }
 
 
-// require_once __DIR__ . "/sqlcommands.php";
+require_once __DIR__ . "/sqlcommands.php";
 
-// // create object (available globally after config.php is included)
-// $sql = new sqlcommands()
+// create object (available globally after config.php is included)
+$sql = new sqlcommands($pdo);
 
 ?>

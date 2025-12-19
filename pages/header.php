@@ -1,7 +1,4 @@
-<?php ?>
 
-
-<body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 border-bottom border-grey">
   
@@ -49,7 +46,7 @@
       <?php else: ?> 
 
 
-          <a href="login.php">
+          <a target="_blank" href="login.php">
           <button class="btn btn-outline-dark rounded-0 ms-2 border-0 ">Sign In</button>
           </a>
       <?php endif ?>

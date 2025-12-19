@@ -1,5 +1,5 @@
 <?php include 'config.php';
-include 'eg.php';
+
 $id = $_GET['id'] ?? null;
 
 if (!$id) {
@@ -7,9 +7,21 @@ if (!$id) {
 }
 
 
-$stmt = $pdo->prepare((new sqlcommands())->select("posts", ["title", "summary", "image_path", "article", "category_id"], "id = ?", ""));
-$stmt->execute([$id]);
-$post = $stmt->fetch(PDO::FETCH_ASSOC);
+$postArr = $sql->select(
+    "posts",
+    ["title", "summary", "image_path", "article", "category_id"],
+    "id = ?",
+    [$id],
+    ""
+);
+
+if (empty($postArr)) {
+    die("Post not found");
+}
+
+$post = $postArr[0]; // single post as associative array
+
+
 
 if ($_SERVER["REQUEST_METHOD"]=="POST") {
     $title = $_POST['title'];
@@ -24,14 +36,10 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
     if (!empty($_FILES['image_path']['name'])) {
 
         $target_dir = "uploads/";
-        // $filename = basename($_FILES["image_path"]["name"]);
-        // $target_file = $target_dir . $filename;
+       
 
         $target_file = $target_dir . basename($_FILES["image_path"]["name"]);
-        // die(__DIR__);
-
-        // var_dump($target_file);
-        // exit;
+      
 
         // Create uploads directory if not exists
         if (!file_exists($target_dir)) {
@@ -53,8 +61,8 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 
     // update the post
     // $stmt = $pdo->prepare("UPDATE posts SET title=?,summary=?,article=?,category_id=?,image_path=? WHERE id = ?");
-    $stmt = $pdo->prepare((new sqlcommands())->update("posts", ["title", "summary", "article", "category_id", "image_path"], ["?", "?", "?", "?", "?"], "id = ?"));
-    $stmt->execute([$title,$summary,$article,$category_id,$image_path, $id]);
+    $post = $sql->update("posts", ["title", "summary", "article", "category_id", "image_path"], [$title, $summary, $body, $category_id, $image_path], "id = ?", [$id]);
+  
 
     header("Location: admin_users.php");
     exit;
@@ -67,18 +75,9 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 ?>
 
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Post</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"/>
-    <script src="cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body> -->
+
     <?php 
-    $cats = $pdo->query((new sqlcommands())->select("category", ["*"], "", ""))->fetchAll();
+    $cats = $sql->select("category", ["*"], "", [], "");
     ?>
     <div  class="container m-3">
     <form action="update.php?id=<?= $id ?>"  method="POST" enctype="multipart/form-data">

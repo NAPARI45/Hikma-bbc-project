@@ -1,5 +1,4 @@
 <?php 
-session_start();
 include 'config.php';
 
 
@@ -18,8 +17,8 @@ if (isset($_POST['update_role'])) {
     $user_id = (int)$_POST['user_id'];
     $new_role = $_POST['role'];
     // $stmt = $pdo->prepare("UPDATE users SET role = ? WHERE id = ?");
-    $stmt = $pdo->prepare((new sqlcommands())->update("users", ["role"], ["?"], "id = ?"));
-    $stmt->execute([$new_role, $user_id]);
+    $sql->update("users", ["role"], ["?"], "id = ?", [$new_role, $user_id]);
+   
     header("Location: admin_users.php");
     exit;
 }
@@ -27,20 +26,19 @@ if (isset($_POST['update_role'])) {
 // Handle delete
 if (isset($_GET['delete'])) {
     $user_id = (int)$_GET['delete'];
-    $stmt = $pdo->prepare("DELETE FROM users WHERE id = ?");
-    $stmt->execute([$user_id]);
+    // $stmt = $pdo->prepare("DELETE FROM users WHERE id = ?");
+    $sql->delete("users", $user_id);
     header("Location: admin_users.php");
     exit;
 }
 
 // Fetch all users
-$stmt = $pdo->query("SELECT * FROM users ORDER BY id ASC");
-$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// $stmt = $pdo->query("SELECT * FROM users ORDER BY id ASC");
+$users = $sql->select("users", ["*"], "", [], "id_asc");
 
-
-$stmt = $pdo->query("SELECT COUNT(*) FROM users");
-$totalUsers = $stmt->fetchColumn();
-
+// $stmt = $pdo->query("SELECT COUNT(*) FROM users");
+$totalUsers = $sql->select("users", ["COUNT(*)"], "", [], "");
+$totalUsers = $totalUsers[0]['COUNT(*)'];
 include 'admin_header.php';
 
 ?>

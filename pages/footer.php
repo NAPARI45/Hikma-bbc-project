@@ -1,14 +1,8 @@
 <?php include 'config.php';
-include 'eg.php';
 
+  $post = $sql->select("posts", ["*"], "", [],  "id_asc");
+  
 
-  $stmt = $pdo->query((new sqlcommands())->select("posts", ["*"], "", "id_asc"));
-  // $stmt->execute([$id]);
-  $post = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-
-//   var_dump($post[1]['title']);
 ?>
 
 

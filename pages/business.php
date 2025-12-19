@@ -1,32 +1,28 @@
 <?php include 'config.php';
-include 'header.php';
-include 'eg.php';
-
- // LOAD ALL POSTS FOR THE TOP SECTIONS (first 28 items)
-    $category_id = 4;
-    $main_stmt = $pdo->prepare((new sqlcommands())->select("posts", ["*"], "category_id = ?", "id_asc"));
-    $main_stmt->execute([$category_id]);
-    $post = $main_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
-$limit = 3;
+$category_id = 4;
+$post = $sql->select("posts", ["*"], "category_id = ?", ["$category_id"], "id_asc");
+   
+
+
+$limit = 5;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 if ($page < 1) $page = 1;
 $offset = ($page - 1) * $limit;
 
 // COUNT POSTS for pagination"SELECT COUNT(*) FROM posts WHERE category_id = ?"
-$total_stmt = $pdo->prepare((new sqlcommands())->count("posts", "category_id = ?"));
-$total_stmt->execute([$category_id]);
-$total_posts = $total_stmt->fetchColumn();
-$total_pages = ceil($total_posts / $limit);
+$total_stmt = $sql->select("posts", ["COUNT(*)"], "category_id = ?", [$category_id], "");
+
 
 // LOAD PAGINATED POSTS (FOR "MORE CULTURE")
-$stmt = $pdo->prepare( (new sqlcommands())->select("posts", ["*"], "category_id = ?", "id_asc") . " LIMIT $limit OFFSET $offset") ;
-
-$stmt->execute([$category_id]);
-$posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$total_posts = $total_stmt[0]['COUNT(*)'];
+$total_pages = ceil($total_posts / $limit);
 
 
+$posts = $sql->select("posts", ["*"], "category_id = ?", [$category_id], "id_asc", $limit, $offset);
+
+include 'header.php';
 
 
   
@@ -142,7 +138,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             </div>
         </div>
-        <div class="container">
+        <div class="container mb-5">
             <hr style="height: 3px; background-color: black; opacity: 1; border: none;">
             <h6 class="bold"><b>MORE NEWS</b></h6>
             <div class="row pt-5">
@@ -169,7 +165,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <h6><a href="view.php?id=<?php echo $post[15]['id'] ?>" class="text-dark text-decoration-none"><?php echo $post[15]['title']; ?></a></h6>
                 </div>
                 <div class="col-4">
-                    <img src="/Hikma-bbc-project/<?php echo $post[16]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3">
+                    <a href="view.php?id=<?php echo $post[16]['id'] ?>"><img src="/Hikma-bbc-project/<?php echo $post[16]['image_path'] ?>" class="img-fluid d-block mx-auto mb-3"></a>
                     <h6><a href="view.php?id=<?php echo $post[16]['id'] ?>" class="text-dark text-decoration-none"><?php echo $post[16]['title']; ?></a></h6>
                 </div>
             </div>
@@ -199,10 +195,10 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                     <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="/Hikma-bbc-project/<?php echo $post[17]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
                                                 </div>
                                                 <div class="col-4">
-                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="/Hikma-bbc-project/<?php echo $post[18]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
+                                                    <a href= "view.php?id=<?php echo $post[18]['id'] ?>"><img src="/Hikma-bbc-project/<?php echo $post[18]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
                                                 </div>
                                                 <div class="col-4">
-                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="/Hikma-bbc-project/<?php echo $post[19]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
+                                                    <a href= "view.php?id=<?php echo $post[19]['id'] ?>"><img src="/Hikma-bbc-project/<?php echo $post[19]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -211,13 +207,13 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <div class="container-fluid" >
                                             <div class="row justify-content-center g-3">
                                                 <div class="col-4">
-                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="/Hikma-bbc-project/<?php echo $post[20]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
+                                                    <a href= "view.php?id=<?php echo $post[20]['id'] ?>"><img src="/Hikma-bbc-project/<?php echo $post[20]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
                                                 </div>
                                                 <div class="col-4">
-                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="/Hikma-bbc-project/<?php echo $post[21]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
+                                                    <a href= "view.php?id=<?php echo $post[21]['id'] ?>"><img src="/Hikma-bbc-project/<?php echo $post[21]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
                                                 </div>
                                                 <div class="col-4">
-                                                    <a href= "view.php?id=<?php echo $post[17]['id'] ?>"><img src="/Hikma-bbc-project/<?php echo $post[22]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
+                                                    <a href= "view.php?id=<?php echo $post[22]['id'] ?>"><img src="/Hikma-bbc-project/<?php echo $post[22]['image_path']; ?>" class="img-fluid w-100 d-block"></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -258,7 +254,14 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </h6>
                     </div>
                     <div class="col-4">
-                        <img src="/Hikma-bbc-project/<?= $p['image_path']; ?>" class="img-fluid d-block mx-auto">
+                        <?php 
+                      $image_src = $p['image_path'];
+
+                        if (!preg_match('/^https?:\/\//', $p['image_path'])) {
+                            $image_src = '../' . $p['image_path'];
+                        }
+                        ?>
+                        <img src="<?= $image_src; ?>" class="img-fluid d-block mx-auto">
                     </div>
                 </div>
                 <hr>

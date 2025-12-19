@@ -5,9 +5,9 @@
     $errors = [];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $username = trim($_POST['username']);
-        $email = trim($_POST['email']);
-        $password = $_POST['password'];
+        $username = trim($_POST['username'] ?? '');
+        $email = trim($_POST['email'] ?? '');
+        $password = $_POST['password'] ?? '';
     
 
 
@@ -25,24 +25,22 @@
         
         //if email already exists
         if (empty($errors)) {
-            $stmt = $pdo->prepare((new sqlcommands())->select("users", ["id"], "email = ?", ""));
-            $stmt->execute([$email]);
+            $user = $sql->select("users", ["id"], "email = ?", [$email]);
 
-            if ($stmt->fetch()) {
-                $errors[] = "Email already registered";
-            }
+           if (!empty($user)) {
+            $errors[] = "Email already registered";
+}
         }
 
         //hashing password and inserting as guest
         if (empty($errors)) {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $stmt = $pdo->prepare(
-                "INSERT INTO users (username, email, password, role)
-                VALUES (?, ?, ?, 'guest')"
-            );
+            $stmt =  $sql->insert("users",["username", "email", "password", "role"], [$username, $email, $hashedPassword, "guest"]);
+                // "INSERT INTO users (username, email, password, role)
+                // VALUES (?, ?, ?, 'guest')"
+           
 
-            $stmt->execute([$username, $email, $hashedPassword]);
 
             header("Location: index.php");
             exit;
